@@ -27,7 +27,7 @@ client.on("messageCreate", async (message) => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:8001/url",
+        "https://shorturl-production-62bf.up.railway.app/url",
         { url: url },
         {
           headers: {
@@ -38,23 +38,23 @@ client.on("messageCreate", async (message) => {
       );
       const shortUrl = response.data.shortUrl;
       const embed = new EmbedBuilder()
-        .setTitle("Short URL Created")
+        .setTitle("Redirection URL Created")
         .setDescription("Here's your new link!")
         .addFields({ name: "Link", value: shortUrl })
         .setColor("Random");
       return message.reply({
-        content: "URL shortened successfully!",
+        content: "Redirection URL created successfully!",
         embeds: [embed],
       });
     } catch (err) {
       console.error(err.message);
       return message.reply({
-        content: "Something went wrong while generating your short URL :') ",
+        content: "Something went wrong while generating your redirection URL :') ",
       });
     }
   } else if (message.content.startsWith("spill")) {
     message.reply({ content: "**Here's what I can do for you:**\n\n" +
-             "🔗 **Generate URL's** – Get a short URL for any link just type  **'create <your-url>'** .\n" +
+             "🔗 **Generate URL's** – Get a redirection/short URL for any link just type  **'create <your-url>'** .\n" +
              "🎁 **Ping-Pong** – I can pong you with simple  **'/ping'** .\n" +
              "*More features coming soon, bestie!*✨" });
   } else {
